@@ -1,2 +1,2 @@
-# hi-react-native
+## hi-react-native
 My very first react-native app
