@@ -2,8 +2,8 @@ import { useState } from "react";
 import {
   Alert,
   Button,
+  FlatList,
   Image,
-  ScrollView,
   Text,
   TextInput,
   View,
@@ -52,13 +52,16 @@ export default function App() {
       </View>
 
       {/* todos */}
-      <ScrollView style={styles.todoContainer}>
-        {todos.map((todo) => (
-          <View style={styles.todoItem} key={todo.id}>
+      <FlatList
+        data={todos}
+        renderItem={({ item: todo }) => (
+          <View style={styles.todoItem}>
             <Text style={styles.todoText}>{todo.todoText}</Text>
           </View>
-        ))}
-      </ScrollView>
+        )}
+        style={styles.todoContainer}
+        keyExtractor={(item) => item.id.toString()}
+      />
     </View>
   );
 }
