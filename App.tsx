@@ -51,9 +51,9 @@ export default function App() {
       {/* todos */}
       <View style={styles.todoContainer}>
         {todos.map((todo) => (
-          <Text style={styles.todoText} key={todo.id}>
-            {todo.todoText}
-          </Text>
+          <View style={styles.todoItem} key={todo.id}>
+            <Text style={styles.todoText}>{todo.todoText}</Text>
+          </View>
         ))}
       </View>
     </View>
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: "#b9bdc1",
+    borderColor: "#cbd5e1",
     height: 45,
     padding: 10,
     borderRadius: 5,
@@ -101,9 +101,16 @@ const styles = StyleSheet.create({
   todoContainer: {
     marginTop: 30,
   },
+  todoItem: {
+    height: 50,
+    backgroundColor: "#f1f5f9",
+    borderRadius: 5,
+    padding: 10,
+    paddingHorizontal: 20,
+    justifyContent: "center",
+    marginBottom: 10,
+  },
   todoText: {
     fontSize: 18,
-    height: 40,
-    lineHeight: 40,
   },
 });
