@@ -3,6 +3,7 @@ import {
   Alert,
   Button,
   Image,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -45,17 +46,19 @@ export default function App() {
           onChangeText={handleInputChange}
           placeholder="Add new todo..."
         />
-        <Button title="Add Todo" color="#242424" onPress={handleAddTodo} />
+        <View style={styles.addBtn}>
+          <Button title="Add Todo" color="#ffffff" onPress={handleAddTodo} />
+        </View>
       </View>
 
       {/* todos */}
-      <View style={styles.todoContainer}>
+      <ScrollView style={styles.todoContainer}>
         {todos.map((todo) => (
           <View style={styles.todoItem} key={todo.id}>
             <Text style={styles.todoText}>{todo.todoText}</Text>
           </View>
         ))}
-      </View>
+      </ScrollView>
     </View>
   );
 }
@@ -97,6 +100,12 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     flex: 1,
     marginRight: 10,
+  },
+  addBtn: {
+    backgroundColor: "#2563eb",
+    height: 45,
+    justifyContent: "center",
+    borderRadius: 5,
   },
   todoContainer: {
     marginTop: 30,
