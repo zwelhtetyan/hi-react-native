@@ -5,6 +5,7 @@ import { Todo } from "./utils/todo";
 import TodoInput from "./components/TodoInput";
 import Header from "./components/Header";
 import TodoContainer from "./components/TodoContainer";
+import { StatusBar } from "expo-status-bar";
 
 export default function App() {
   const [todos, setTodos] = useState<TodoType[]>([]);
@@ -27,21 +28,24 @@ export default function App() {
   };
 
   return (
-    <View style={styles.container}>
-      <Header />
+    <>
+      <StatusBar />
+      <View style={styles.container}>
+        <Header />
 
-      <TodoInput
-        onAddTodo={handleAddTodo}
-        closeModal={closeModal}
-        modalVisible={modalVisible}
-      />
+        <TodoInput
+          onAddTodo={handleAddTodo}
+          closeModal={closeModal}
+          modalVisible={modalVisible}
+        />
 
-      <TodoContainer
-        todos={todos}
-        handleDeleteTodo={handleDeleteTodo}
-        openModal={openModal}
-      />
-    </View>
+        <TodoContainer
+          todos={todos}
+          handleDeleteTodo={handleDeleteTodo}
+          openModal={openModal}
+        />
+      </View>
+    </>
   );
 }
 
