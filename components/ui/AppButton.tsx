@@ -2,16 +2,29 @@ import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 interface AppButtonProps {
   onPress?: () => void;
+  title: string;
+  style?: { [key: string]: string | number };
 }
 
-export default function AppButton({ onPress }: AppButtonProps) {
+export default function AppButton({
+  onPress,
+  title,
+  style: resStyle,
+}: AppButtonProps) {
   return (
     <TouchableOpacity
       activeOpacity={0.9}
-      style={styles.addBtn}
+      style={{ ...styles.addBtn, ...resStyle }}
       onPress={onPress}
     >
-      <Text style={styles.addBtnText}>Add Todo</Text>
+      <Text
+        style={{
+          ...styles.addBtnText,
+          color: (resStyle?.color as string) || "#fff",
+        }}
+      >
+        {title}
+      </Text>
     </TouchableOpacity>
   );
 }
@@ -25,7 +38,6 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   addBtnText: {
-    color: "#fff",
     fontSize: 15,
     fontWeight: "500",
   },
