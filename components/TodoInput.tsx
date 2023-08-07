@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Button, StyleSheet, TextInput, View } from "react-native";
+import { StyleSheet, TextInput, View } from "react-native";
+import AppButton from "./ui/AppButton";
 
 interface TodoInputProps {
   onAddTodo: (todo: string) => void;
@@ -25,9 +26,7 @@ export default function TodoInput({ onAddTodo }: TodoInputProps) {
         onChangeText={handleInputChange}
         placeholder="Add new todo..."
       />
-      <View style={styles.addBtn}>
-        <Button title="Add Todo" color="#ffffff" onPress={handleAddTodo} />
-      </View>
+      <AppButton onPress={handleAddTodo} />
     </View>
   );
 }
@@ -48,11 +47,5 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     flex: 1,
     marginRight: 10,
-  },
-  addBtn: {
-    backgroundColor: "#2563eb",
-    height: 45,
-    justifyContent: "center",
-    borderRadius: 5,
   },
 });
