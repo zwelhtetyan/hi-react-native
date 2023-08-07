@@ -18,11 +18,15 @@ export default function App() {
     setTodos((prevTodos) => [newTodo, ...prevTodos]);
   };
 
+  const handleDeleteTodo = (id: number) => {
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+  };
+
   return (
     <View style={styles.container}>
       <Header />
       <TodoInput onAddTodo={handleAddTodo} />
-      <TodoContainer todos={todos} />
+      <TodoContainer todos={todos} handleDeleteTodo={handleDeleteTodo} />
     </View>
   );
 }

@@ -1,14 +1,22 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
+import type { Todo } from "../types/todo";
 
-interface TodoItemPrpos {
-  todoText: string;
+interface TodoItemProps {
+  todo: Todo;
+  onDeleteTodo: (id: number) => void;
 }
 
-export default function TodoItem({ todoText }: TodoItemPrpos) {
+export default function TodoItem({ todo, onDeleteTodo }: TodoItemProps) {
+  const showAlert = () =>
+    Alert.alert("Delete Todo", "Are you sure you want to delete?", [
+      { text: "Cancel", style: "cancel" },
+      { text: "Delete", onPress: () => onDeleteTodo(todo.id) },
+    ]);
+
   return (
-    <View style={styles.todoItem}>
-      <Text style={styles.todoText}>{todoText}</Text>
-    </View>
+    <Pressable onLongPress={showAlert} style={styles.todoItem}>
+      <Text style={styles.todoText}>{todo.todoText}</Text>
+    </Pressable>
   );
 }
 
