@@ -8,6 +8,10 @@ import TodoContainer from "./components/TodoContainer";
 
 export default function App() {
   const [todos, setTodos] = useState<TodoType[]>([]);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const openModal = () => setModalVisible(true);
+  const closeModal = () => setModalVisible(false);
 
   const handleAddTodo = (todo: string) => {
     const newTodo = new Todo(todo);
@@ -25,8 +29,18 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Header />
-      <TodoInput onAddTodo={handleAddTodo} />
-      <TodoContainer todos={todos} handleDeleteTodo={handleDeleteTodo} />
+
+      <TodoInput
+        onAddTodo={handleAddTodo}
+        closeModal={closeModal}
+        modalVisible={modalVisible}
+      />
+
+      <TodoContainer
+        todos={todos}
+        handleDeleteTodo={handleDeleteTodo}
+        openModal={openModal}
+      />
     </View>
   );
 }

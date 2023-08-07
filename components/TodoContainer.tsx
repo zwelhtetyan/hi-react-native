@@ -1,15 +1,29 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import { Todo } from "../types/todo";
 import TodoItem from "./TodoItem";
+import AppButton from "./ui/AppButton";
 
 interface Todos {
   todos: Todo[];
   handleDeleteTodo: (id: number) => void;
+  openModal: () => void;
 }
 
-export default function TodoContainer({ todos, handleDeleteTodo }: Todos) {
+export default function TodoContainer({
+  todos,
+  handleDeleteTodo,
+  openModal,
+}: Todos) {
   return (
     <>
+      <View style={{ alignItems: "center" }}>
+        <AppButton
+          title="Add Todo"
+          style={{ marginTop: 50 }}
+          onPress={openModal}
+        />
+      </View>
+
       {todos.length > 0 ? (
         <FlatList
           data={todos}
@@ -33,7 +47,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   noTodoTextContainer: {
-    marginTop: 50,
+    marginTop: 30,
     alignItems: "center",
   },
   noTodoText: {
